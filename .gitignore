@@ -1,0 +1,81 @@
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+
+# Android
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+android/.gradle/
+android/build/
+android/local.properties
+android/key.properties
+
+# iOS
+ios/Flutter/Flutter.podspec
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/build/
+ios/Flutter/App.framework
+
+# macOS
+macos/Flutter/GeneratedPluginRegistrant.swift
+macos/Flutter/ephemeral/
+macos/build/
+
+# Linux
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugins.cmake
+linux/build/
+
+# Windows
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugins.cmake
+windows/build/
+
+# Web
+web/index.html
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+*.lcov
+
+# Test
+test/coverage/
+
+# Generated files
+lib/core/localization/locale_keys.g.dart
+
+# Firebase
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+ios/firebase_app_id_file.json
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.env
