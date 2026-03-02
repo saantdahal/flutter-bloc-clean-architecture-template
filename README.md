@@ -27,62 +27,56 @@ This template follows the principles of **Clean Architecture** as proposed by Ro
 ## Project Structure
 
 ```
-flutter-bloc-clean-architecture-template/
-├── android/                    # Android platform code
-├── ios/                        # iOS platform code
-├── lib/                        # Main application code
-│   └── core                    # Core utilities and shared code
-│       └── error
-│           ├── failures.dart     # Error handling classes
-│       └── network
-│           ├── network_info_impl.dart
-│           ├── network_info.dart # Network connectivity abstraction
-│       └── usecases
-│           ├── usecase.dart      # Base use case class
-│   └── data                    # Data layer
-│       └── datasources
-│           ├── example_remote_datasource_impl.dart
-│           ├── example_remote_datasource.dart
-│       └── models
-│           ├── example_model.dart
-│       └── repositories
-│           ├── example_repository_impl.dart
-│   └── domain                  # Domain layer
-│       └── entities
-│           ├── example_entity.dart
-│       └── repositories
-│           ├── example_repository.dart
-│       └── usecases
-│           ├── get_examples.dart
-│   └── injection_container     # Dependency injection
-│       ├── injection_container.dart
-│   └── presentation            # Presentation layer
-│       └── blocs
-│           ├── example_bloc.dart
-│           ├── example_event.dart
-│           ├── example_state.dart
-│       └── pages
-│           ├── home_page.dart
-│       └── widgets
-│           ├── example_widget.dart
-│   ├── injection_container.dart  # Legacy file (can be removed)
-│   └── main.dart                 # Application entry point
-├── assets/                     # Static assets
-│   └── images
-│       ├── README.md
-│   └── translations
-│       ├── en.json
-│       └── ne.json
-├── test/                       # Unit and widget tests
-├── web/                        # Web platform code
-├── windows/                    # Windows platform code
-├── linux/                      # Linux platform code
-├── macos/                      # macOS platform code
-├── analysis_options.yaml         # Dart analysis options
-├── pubspec.yaml                  # Project dependencies
-├── .gitignore                    # Git ignore rules
-├── .env                          # Environment variables
-└── README.md                     # Project documentation
+├── core
+│   ├── error
+│   │   └── failures.dart
+│   ├── network
+│   │   ├── network_info.dart
+│   │   └── network_info_impl.dart
+│   └── usecases
+│       └── usecase.dart
+├── data
+│   ├── datasources
+│   ├── models
+│   └── repositories
+├── domain
+│   ├── entities
+│   ├── repositories
+│   └── usecases
+├── features
+│   └── example
+│       ├── data
+│       │   ├── datasources
+│       │   │   ├── example_remote_datasource.dart
+│       │   │   └── example_remote_datasource_impl.dart
+│       │   ├── models
+│       │   │   └── example_model.dart
+│       │   └── repositories
+│       │       └── example_repository_impl.dart
+│       ├── domain
+│       │   ├── entities
+│       │   │   └── example_entity.dart
+│       │   ├── repositories
+│       │   │   └── example_repository.dart
+│       │   └── usecases
+│       │       └── get_examples.dart
+│       └── presentation
+│           ├── blocs
+│           │   ├── example_bloc.dart
+│           │   ├── example_event.dart
+│           │   └── example_state.dart
+│           ├── pages
+│           │   └── home_page.dart
+│           └── widgets
+│               └── example_widget.dart
+├── injection_container
+│   └── injection_container.dart
+├── presentation
+│   ├── blocs
+│   ├── pages
+│   └── widgets
+├── injection_container.dart
+└── main.dart
 ```
 
 ## Dependencies
