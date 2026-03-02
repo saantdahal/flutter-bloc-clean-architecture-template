@@ -2,7 +2,7 @@
 
 A comprehensive Flutter project template implementing Clean Architecture with BLoC (Business Logic Component) pattern. This template provides a solid foundation for building scalable, maintainable, and testable Flutter applications.
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 This template follows the principles of **Clean Architecture** as proposed by Robert C. Martin, combined with the **BLoC pattern** for state management. The architecture is divided into three main layers:
 
@@ -24,60 +24,60 @@ This template follows the principles of **Clean Architecture** as proposed by Ro
 - **Data Sources**: Concrete implementations for data retrieval
 - **Repositories**: Data access implementations
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 flutter-bloc-clean-architecture-template/
-├── 📁android/                    # Android platform code
-├── 📁ios/                        # iOS platform code
-├── 📁lib/                        # Main application code
-│   └── 📁core                    # Core utilities and shared code
-│       └── 📁error
+├── android/                    # Android platform code
+├── ios/                        # iOS platform code
+├── lib/                        # Main application code
+│   └── core                    # Core utilities and shared code
+│       └── error
 │           ├── failures.dart     # Error handling classes
-│       └── 📁network
+│       └── network
 │           ├── network_info_impl.dart
 │           ├── network_info.dart # Network connectivity abstraction
-│       └── 📁usecases
+│       └── usecases
 │           ├── usecase.dart      # Base use case class
-│   └── 📁data                    # Data layer
-│       └── 📁datasources
+│   └── data                    # Data layer
+│       └── datasources
 │           ├── example_remote_datasource_impl.dart
 │           ├── example_remote_datasource.dart
-│       └── 📁models
+│       └── models
 │           ├── example_model.dart
-│       └── 📁repositories
+│       └── repositories
 │           ├── example_repository_impl.dart
-│   └── 📁domain                  # Domain layer
-│       └── 📁entities
+│   └── domain                  # Domain layer
+│       └── entities
 │           ├── example_entity.dart
-│       └── 📁repositories
+│       └── repositories
 │           ├── example_repository.dart
-│       └── 📁usecases
+│       └── usecases
 │           ├── get_examples.dart
-│   └── 📁injection_container     # Dependency injection
+│   └── injection_container     # Dependency injection
 │       ├── injection_container.dart
-│   └── 📁presentation            # Presentation layer
-│       └── 📁blocs
+│   └── presentation            # Presentation layer
+│       └── blocs
 │           ├── example_bloc.dart
 │           ├── example_event.dart
 │           ├── example_state.dart
-│       └── 📁pages
+│       └── pages
 │           ├── home_page.dart
-│       └── 📁widgets
+│       └── widgets
 │           ├── example_widget.dart
 │   ├── injection_container.dart  # Legacy file (can be removed)
 │   └── main.dart                 # Application entry point
-├── 📁assets/                     # Static assets
-│   └── 📁images
+├── assets/                     # Static assets
+│   └── images
 │       ├── README.md
-│   └── 📁translations
+│   └── translations
 │       ├── en.json
 │       └── ne.json
-├── 📁test/                       # Unit and widget tests
-├── 📁web/                        # Web platform code
-├── 📁windows/                    # Windows platform code
-├── 📁linux/                      # Linux platform code
-├── 📁macos/                      # macOS platform code
+├── test/                       # Unit and widget tests
+├── web/                        # Web platform code
+├── windows/                    # Windows platform code
+├── linux/                      # Linux platform code
+├── macos/                      # macOS platform code
 ├── analysis_options.yaml         # Dart analysis options
 ├── pubspec.yaml                  # Project dependencies
 ├── .gitignore                    # Git ignore rules
@@ -85,7 +85,7 @@ flutter-bloc-clean-architecture-template/
 └── README.md                     # Project documentation
 ```
 
-## 📦 Dependencies
+## Dependencies
 
 ### Core Dependencies
 
@@ -131,7 +131,7 @@ flutter-bloc-clean-architecture-template/
 - **retrofit_generator**: ^9.1.2 - Retrofit code generation
 - **mockito**: ^5.4.4 - Mocking for tests
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -176,7 +176,7 @@ flutter-bloc-clean-architecture-template/
    - Add `google-services.json` to `android/app/`
    - Add `GoogleService-Info.plist` to `ios/Runner/`
 
-## 📖 Usage
+## Usage
 
 ### Adding a New Feature
 
@@ -274,7 +274,7 @@ Text('hello'.tr()), // Uses translation keys
 
 Add translations to `assets/translations/` JSON files.
 
-## 🧪 Testing
+## Testing
 
 Run tests:
 
@@ -288,13 +288,13 @@ Run integration tests:
 flutter test integration_test/
 ```
 
-## 📋 Scripts
+## Scripts
 
 - `flutter pub run build_runner build` - Generate code
 - `flutter pub run build_runner watch` - Watch for changes and regenerate
 - `flutter pub run flutter_launcher_icons` - Generate app icons
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -302,11 +302,11 @@ flutter test integration_test/
 4. Push to the branch
 5. Create a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Reso Coder](https://resocoder.com/) for Clean Architecture tutorials
 - [Flutter BLoC](https://bloclibrary.dev/) for state management
