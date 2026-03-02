@@ -63,4 +63,4 @@ flutter:
   assets:
     - assets/translations/en.json
     - assets/translations/ne.json
-    - .env
+

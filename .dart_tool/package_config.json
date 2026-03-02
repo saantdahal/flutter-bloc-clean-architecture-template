@@ -9,7 +9,7 @@
     },
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.65",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.66",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -21,7 +21,7 @@
     },
     {
       "name": "archive",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/archive-4.0.7",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/archive-4.0.9",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -39,7 +39,7 @@
     },
     {
       "name": "bloc",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/bloc-9.1.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/bloc-9.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -93,7 +93,7 @@
     },
     {
       "name": "built_value",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/built_value-8.12.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/built_value-8.12.4",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -123,7 +123,7 @@
     },
     {
       "name": "characters",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/characters-1.4.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/characters-1.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -146,8 +146,14 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "code_assets",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/code_assets-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
       "name": "code_builder",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/code_builder-4.11.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/code_builder-4.11.1",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -183,19 +189,19 @@
     },
     {
       "name": "dbus",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/dbus-0.7.11",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/dbus-0.7.12",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "dio",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/dio-5.9.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/dio-5.9.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "dio_web_adapter",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/dio_web_adapter-2.1.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/dio_web_adapter-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -219,7 +225,7 @@
     },
     {
       "name": "equatable",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/equatable-2.0.7",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/equatable-2.0.8",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -231,7 +237,7 @@
     },
     {
       "name": "ffi",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/ffi-2.1.4",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/ffi-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -243,7 +249,7 @@
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_core-4.3.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_core-4.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -255,25 +261,25 @@
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_core_web-3.3.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_core_web-3.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "firebase_messaging",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_messaging-16.1.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_messaging-16.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_messaging_platform_interface",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.7.5",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.7.6",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_messaging_web",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_messaging_web-4.1.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/firebase_messaging_web-4.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -287,7 +293,7 @@
       "name": "flutter",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "flutter_bloc",
@@ -311,11 +317,11 @@
       "name": "flutter_driver",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_driver",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "flutter_flavorizr",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/flutter_flavorizr-2.4.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/flutter_flavorizr-2.4.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -353,7 +359,7 @@
       "name": "flutter_localizations",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "flutter_screenutil",
@@ -407,13 +413,13 @@
       "name": "flutter_test",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "frontend_server_client",
@@ -425,7 +431,7 @@
       "name": "fuchsia_remote_debug_protocol",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/fuchsia_remote_debug_protocol",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "get_it",
@@ -452,6 +458,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "hooks",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/hooks-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
       "name": "http",
       "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/http-1.6.0",
       "packageUri": "lib/",
@@ -471,7 +483,7 @@
     },
     {
       "name": "image",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/image-4.7.2",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/image-4.8.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -491,7 +503,7 @@
       "name": "integration_test",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/integration_test",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "internet_connection_checker",
@@ -579,15 +591,15 @@
     },
     {
       "name": "matcher",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/matcher-0.12.17",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/matcher-0.12.18",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.7"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/material_color_utilities-0.13.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.5"
     },
     {
       "name": "meta",
@@ -608,10 +620,22 @@
       "languageVersion": "3.7"
     },
     {
+      "name": "native_toolchain_c",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/native_toolchain_c-0.17.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
       "name": "nested",
       "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "objective_c",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/objective_c-9.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
     },
     {
       "name": "octo_image",
@@ -651,9 +675,9 @@
     },
     {
       "name": "path_provider_foundation",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/path_provider_foundation-2.5.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/path_provider_foundation-2.6.0",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "path_provider_linux",
@@ -675,7 +699,7 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/petitparser-7.0.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/petitparser-7.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -699,7 +723,7 @@
     },
     {
       "name": "posix",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/posix-6.0.3",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/posix-6.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -771,7 +795,7 @@
     },
     {
       "name": "shared_preferences_android",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.18",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.21",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -821,7 +845,7 @@
       "name": "sky_engine",
       "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "source_gen",
@@ -837,7 +861,7 @@
     },
     {
       "name": "source_span",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/source_span-1.10.1",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/source_span-1.10.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
@@ -921,9 +945,9 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/test_api-0.7.7",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/test_api-0.7.9",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "3.7"
     },
     {
       "name": "timezone",
@@ -945,7 +969,7 @@
     },
     {
       "name": "uuid",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/uuid-4.5.2",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/uuid-4.5.3",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -963,9 +987,9 @@
     },
     {
       "name": "vector_graphics_compiler",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.19",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "vector_math",
@@ -981,7 +1005,7 @@
     },
     {
       "name": "watcher",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/watcher-1.2.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/watcher-1.2.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -1041,8 +1065,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.10.4",
+  "generatorVersion": "3.11.0",
   "flutterRoot": "file:///home/santosh/SanTosh/Applications/flutter",
-  "flutterVersion": "3.38.5",
+  "flutterVersion": "3.41.1",
   "pubCache": "file:///home/santosh/.pub-cache"
 }
