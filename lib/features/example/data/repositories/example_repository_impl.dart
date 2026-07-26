@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc_clean_architecture_template/core/error/failures.dart';
 import 'package:flutter_bloc_clean_architecture_template/core/network/network_info.dart';
 import '../../domain/entities/example_entity.dart';
@@ -20,11 +21,17 @@ class ExampleRepositoryImpl implements ExampleRepository {
       try {
         final remoteExamples = await remoteDataSource.getExamples();
         return Right(remoteExamples);
+      } on DioException catch (e) {
+        return Left(
+          ServerFailure(
+            message: e.message ?? 'Failed to load examples from server.',
+          ),
+        );
       } catch (e) {
-        return Left(ServerFailure());
+        return Left(ServerFailure(message: e.toString()));
       }
     } else {
-      return Left(NetworkFailure());
+      return const Left(NetworkFailure());
     }
   }
 }
