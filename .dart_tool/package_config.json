@@ -291,9 +291,9 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter",
+      "rootUri": "file:///home/santosh/Applications/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "flutter_bloc",
@@ -315,9 +315,9 @@
     },
     {
       "name": "flutter_driver",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_driver",
+      "rootUri": "file:///home/santosh/Applications/flutter/packages/flutter_driver",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "flutter_flavorizr",
@@ -357,9 +357,9 @@
     },
     {
       "name": "flutter_localizations",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_localizations",
+      "rootUri": "file:///home/santosh/Applications/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "flutter_screenutil",
@@ -411,15 +411,15 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_test",
+      "rootUri": "file:///home/santosh/Applications/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///home/santosh/Applications/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "frontend_server_client",
@@ -429,9 +429,9 @@
     },
     {
       "name": "fuchsia_remote_debug_protocol",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/fuchsia_remote_debug_protocol",
+      "rootUri": "file:///home/santosh/Applications/flutter/packages/fuchsia_remote_debug_protocol",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "get_it",
@@ -488,22 +488,10 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "injectable",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/injectable-2.6.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.8"
-    },
-    {
-      "name": "injectable_generator",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/injectable_generator-2.7.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
       "name": "integration_test",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/packages/integration_test",
+      "rootUri": "file:///home/santosh/Applications/flutter/packages/integration_test",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "internet_connection_checker",
@@ -591,7 +579,7 @@
     },
     {
       "name": "matcher",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/matcher-0.12.18",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/matcher-0.12.19",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -603,7 +591,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/meta-1.17.0",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/meta-1.18.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -764,12 +752,6 @@
       "languageVersion": "3.6"
     },
     {
-      "name": "recase",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/recase-4.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "retrofit",
       "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/retrofit-4.9.2",
       "packageUri": "lib/",
@@ -843,9 +825,9 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///home/santosh/SanTosh/Applications/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/santosh/Applications/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "source_gen",
@@ -945,7 +927,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/test_api-0.7.9",
+      "rootUri": "file:///home/santosh/.pub-cache/hosted/pub.dev/test_api-0.7.11",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -1065,8 +1047,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.11.0",
-  "flutterRoot": "file:///home/santosh/SanTosh/Applications/flutter",
-  "flutterVersion": "3.41.1",
+  "generatorVersion": "3.12.2",
+  "flutterRoot": "file:///home/santosh/Applications/flutter",
+  "flutterVersion": "3.44.6",
   "pubCache": "file:///home/santosh/.pub-cache"
 }

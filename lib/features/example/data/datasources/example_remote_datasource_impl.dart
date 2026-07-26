@@ -10,8 +10,7 @@ class ExampleRemoteDataSourceImpl implements ExampleRemoteDataSource {
 
   @override
   Future<List<ExampleModel>> getExamples() async {
-    final response =
-        await dio.get('https://jsonplaceholder.typicode.com/posts');
+    final response = await dio.get('/posts');
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonList = response.data;

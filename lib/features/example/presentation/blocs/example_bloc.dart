@@ -16,7 +16,7 @@ class ExampleBloc extends Bloc<ExampleEvent, ExampleState> {
       emit(ExampleLoading());
       final result = await getExamples(NoParams());
       result.fold(
-        (failure) => emit(ExampleError()),
+        (failure) => emit(ExampleError(failure.message)),
         (examples) => emit(ExampleLoaded(examples)),
       );
     });

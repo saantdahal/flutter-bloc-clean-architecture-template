@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,12 +10,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(title: Text('home_title'.tr())),
       body: Center(
         child: BlocBuilder<ExampleBloc, ExampleState>(
           builder: (context, state) {
             if (state is ExampleInitial) {
-              return const Text('Press the button to load examples');
+              return Text('press_button_to_load'.tr());
             } else if (state is ExampleLoading) {
               return const CircularProgressIndicator();
             } else if (state is ExampleLoaded) {
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
                 },
               );
             } else if (state is ExampleError) {
-              return const Text('Error loading examples');
+              return Text('${'error_loading'.tr()}: ${state.message}');
             }
             return Container();
           },

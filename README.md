@@ -26,23 +26,21 @@ This template follows the principles of **Clean Architecture** as proposed by Ro
 
 ## Project Structure
 
+The template is **feature-first**: shared code lives under `core/`, and every
+feature owns its full data/domain/presentation stack under `features/<name>/`.
+
 ```
+lib
 ├── core
 │   ├── error
 │   │   └── failures.dart
 │   ├── network
 │   │   ├── network_info.dart
 │   │   └── network_info_impl.dart
+│   ├── router
+│   │   └── app_router.dart
 │   └── usecases
 │       └── usecase.dart
-├── data
-│   ├── datasources
-│   ├── models
-│   └── repositories
-├── domain
-│   ├── entities
-│   ├── repositories
-│   └── usecases
 ├── features
 │   └── example
 │       ├── data
@@ -69,15 +67,11 @@ This template follows the principles of **Clean Architecture** as proposed by Ro
 │           │   └── home_page.dart
 │           └── widgets
 │               └── example_widget.dart
-├── injection_container
-│   └── injection_container.dart
-├── presentation
-│   ├── blocs
-│   ├── pages
-│   └── widgets
 ├── injection_container.dart
 └── main.dart
 ```
+
+To add a new feature, mirror the `example` folder under `features/<name>/`.
 
 ## Dependencies
 
@@ -85,7 +79,7 @@ This template follows the principles of **Clean Architecture** as proposed by Ro
 
 - **flutter_bloc**: ^9.1.1 - State management
 - **equatable**: ^2.0.5 - Value equality
-- **get_it**: ^7.7.0 - Dependency injection
+- **get_it**: ^7.7.0 - Dependency injection (manual registration in `lib/injection_container.dart`)
 - **dartz**: ^0.10.1 - Functional programming utilities
 
 ### Networking & Data
@@ -160,11 +154,20 @@ This template follows the principles of **Clean Architecture** as proposed by Ro
 
 ### Environment Setup
 
-1. Copy `.env` file and configure your environment variables:
+1. Copy `.env.example` to `.env` and configure your environment variables:
+
+   ```bash
+   cp .env.example .env
+   ```
 
    ```env
-   API_BASE_URL=https://api.example.com
+   API_BASE_URL=https://jsonplaceholder.typicode.com
    ```
+
+   `.env` is loaded on startup via `flutter_dotenv` (see `lib/main.dart`) and
+   `API_BASE_URL` is used to configure the shared `Dio` client's base URL in
+   `lib/injection_container.dart`. `.env` is gitignored — only `.env.example`
+   is committed.
 
 2. For Firebase integration:
    - Add `google-services.json` to `android/app/`
@@ -248,25 +251,56 @@ The template uses BLoC pattern for state management. Each feature has its own BL
 
 ### Networking
 
-Uses Dio for HTTP requests with Retrofit for type-safe API calls:
+Uses Dio for HTTP requests with Retrofit for type-safe API calls. The shared
+`Dio` instance is registered once in `lib/injection_container.dart` with its
+`baseUrl` read from `.env` and a `PrettyDioLogger` interceptor attached, so
+data sources issue relative requests:
 
 ```dart
-@RestApi(baseUrl: "https://api.example.com")
+final response = await dio.get('/posts');
+```
+
+For a type-safe API layer, define a Retrofit interface:
+
+```dart
+@RestApi()
 abstract class ApiService {
   @GET("/posts")
   Future<List<PostModel>> getPosts();
 }
 ```
 
-### Localization
+### Routing
 
-Supports multiple languages using easy_localization:
+Uses `go_router` for declarative navigation. Routes are declared in
+`lib/core/router/app_router.dart` and consumed by `MaterialApp.router` in
+`lib/main.dart`:
 
 ```dart
-Text('hello'.tr()), // Uses translation keys
+GoRoute(
+  path: '/',
+  name: 'home',
+  builder: (context, state) => const HomePage(),
+),
 ```
 
-Add translations to `assets/translations/` JSON files.
+### Localization
+
+Supports multiple languages using easy_localization, initialized in
+`lib/main.dart` with `en`/`ne` as the supported locales:
+
+```dart
+Text('press_button_to_load'.tr()), // Uses translation keys
+```
+
+Add translation keys to `assets/translations/en.json` and
+`assets/translations/ne.json`.
+
+### Responsive UI
+
+Uses `flutter_screenutil` for responsive sizing. `main.dart` wraps the app in
+a `ScreenUtilInit`, after which `.w`, `.h`, `.sp`, etc. extensions are
+available on `num` throughout the app.
 
 ## Testing
 

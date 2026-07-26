@@ -20,4 +20,11 @@ class ExampleLoaded extends ExampleState {
   List<Object> get props => [examples];
 }
 
-class ExampleError extends ExampleState {}
+class ExampleError extends ExampleState {
+  final String message;
+
+  const ExampleError(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
