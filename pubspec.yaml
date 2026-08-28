@@ -1,0 +1,16 @@
+name: clean_bloc_gen
+description: >-
+  CLI that scaffolds Flutter projects and features following Clean Architecture
+  with the BLoC pattern, driven by a customizable configuration.
+publish_to: "none"
+version: 1.0.0
+
+environment:
+  sdk: ^3.5.0
+
+# `dart pub global activate --source path .` exposes this as `clean_bloc`.
+executables:
+  clean_bloc:
+
+# Intentionally dependency-free: the generator only uses dart:io / dart:convert
+# so it can be run (or compiled to a single executable) without a pub fetch.
