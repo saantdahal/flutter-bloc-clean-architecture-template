@@ -1,341 +1,344 @@
-# Flutter BLoC Clean Architecture Template
+# clean_bloc
 
-A comprehensive Flutter project template implementing Clean Architecture with BLoC (Business Logic Component) pattern. This template provides a solid foundation for building scalable, maintainable, and testable Flutter applications.
+A Flutter project generator for **Clean Architecture + BLoC**.
 
-## Architecture Overview
+It scaffolds a complete, feature-first Flutter project from a configuration you
+control — package name, Android `applicationId`, iOS bundle identifier, display
+name, state management style and the exact set of packages — then keeps
+generating features into it that match those choices.
 
-This template follows the principles of **Clean Architecture** as proposed by Robert C. Martin, combined with the **BLoC pattern** for state management. The architecture is divided into three main layers:
+Written in plain Dart with **zero dependencies**: it only uses `dart:io`, so it
+runs (or compiles to a single binary) without fetching anything.
 
-### Presentation Layer
+```bash
+clean_bloc create shop_app --org com.acme --android-package com.acme.shop
+```
 
-- **BLoC**: Handles business logic and state management
-- **Pages**: UI screens and navigation
-- **Widgets**: Reusable UI components
+## Install
 
-### Domain Layer
+```bash
+git clone <this-repo> clean_bloc && cd clean_bloc
+dart pub global activate --source path .
+```
 
-- **Entities**: Core business objects
-- **Use Cases**: Application-specific business rules
-- **Repositories**: Abstract data interfaces
+That puts a `clean_bloc` command on your PATH. Alternatives:
 
-### Data Layer
+```bash
+dart run bin/clean_bloc.dart <command>              # straight from the repo
+dart compile exe bin/clean_bloc.dart -o clean_bloc  # standalone binary
+```
 
-- **Models**: Data transfer objects
-- **Data Sources**: Concrete implementations for data retrieval
-- **Repositories**: Data access implementations
+Requires the Dart SDK ^3.5 (any Flutter install includes one). `flutter` must be
+on the PATH for `create` to produce the native platform folders.
 
-## Project Structure
+## Commands
 
-The template is **feature-first**: shared code lives under `core/`, and every
-feature owns its full data/domain/presentation stack under `features/<name>/`.
+| Command | What it does |
+| --- | --- |
+| `create [name]` | Scaffolds a project. Interactive unless `-y` or `--config`. |
+| `feature <name>` | Adds a feature slice to an existing project and wires it up. |
+| `rename` | Changes the Android package, iOS bundle id and display name. |
+| `config [path]` | Writes a `clean_bloc.yaml` you can edit and reuse. |
+| `packages` | Lists the packages the current configuration selects. |
+| `help` | Full option reference. |
+
+Common flags: `-y/--yes` (never prompt), `--dry-run`, `--force`,
+`--no-flutter-create`, `--pub-get`.
+
+## Initial setup
+
+`clean_bloc create` walks through the whole setup interactively. Everything it
+asks is also available as a flag:
+
+```bash
+clean_bloc create shop_app -y \
+  --org com.acme \
+  --display-name "Shop App" \
+  --android-package com.acme.shop \
+  --ios-bundle-id com.acme.shop \
+  --platforms android,ios \
+  --min-sdk 23 --ios-target 13.0 \
+  --state bloc --locales en,ne
+```
+
+It runs `flutter create` for the chosen platforms, writes the architecture on
+top, and rewrites every native identifier:
+
+| Setting | Applied to |
+| --- | --- |
+| `--name` | pubspec `name`, every `package:` import |
+| `--display-name` | `android:label`, `CFBundleDisplayName`, web title, `MaterialApp.title` |
+| `--android-package` | `namespace`, `applicationId`, and the `MainActivity` package — the file is moved into its new directory |
+| `--ios-bundle-id` | `PRODUCT_BUNDLE_IDENTIFIER` for Runner and RunnerTests, plus the macOS `AppInfo.xcconfig` |
+| `--min-sdk` | `minSdk` in `android/app/build.gradle.kts` |
+| `--ios-target` | `IPHONEOS_DEPLOYMENT_TARGET` and the Podfile platform |
+| `--platforms` | which platform folders `flutter create` produces |
+
+Android and iOS identifiers are independent, because Xcode rejects underscores
+in bundle ids. By default `my_app` becomes `com.example.my_app` on Android and
+`com.example.myApp` on iOS — the same convention `flutter create` uses.
+
+To change them on an existing project later:
+
+```bash
+clean_bloc rename --android-package com.acme.market \
+  --ios-bundle-id com.acme.market --display-name "Acme Market"
+```
+
+`rename` reads the current values out of the project first, so it also works on
+projects this tool did not generate.
+
+## Package selection
+
+Modules decide which packages land in the pubspec — the generated project never
+carries a dependency its code does not use. Disable any of them with
+`--no-<name>`:
+
+| Module | Packages | Adds |
+| --- | --- | --- |
+| `network` | `dio`, `pretty_dio_logger` | `ApiClient`, the interceptor stack, remote data sources |
+| `connectivity` | `internet_connection_checker` | `NetworkInfo`, offline handling |
+| `env` | `flutter_dotenv` | `.env` + `.env.example`, base-url wiring |
+| `routing` | `go_router` | `AppRouter` with named routes |
+| `localization` | `easy_localization`, `flutter_localizations`, `intl` | JSON translations per locale |
+| `responsive` | `flutter_screenutil` | `ScreenUtilInit` with your design size |
+| `theming` | — | `AppTheme` light/dark Material 3 |
+| `logger` | `logger` | `AppLogger` wrapper |
+| `prefs` | `shared_preferences` | local data sources, cache-on-failure |
+| `secure_storage` | `flutter_secure_storage` | `SecureStorageService` + Dio auth interceptor |
+| `firebase` | `firebase_core`, `firebase_messaging`, `flutter_local_notifications` | `PushNotificationService` |
+| `flavors` | `flutter_flavorizr` | dev/stg/prod flavor config |
+| `example_feature` | — | a complete worked feature |
+| `tests` | — | unit tests for the generated blocs/cubits |
+
+Add or pin anything else:
+
+```bash
+clean_bloc create app --add "freezed_annotation:^2.4.4" \
+  --add-dev "bloc_test:^9.1.7" --pin "dio:^5.7.0"
+```
+
+Preview the resolution before generating:
+
+```bash
+clean_bloc packages [--config clean_bloc.yaml]
+```
+
+## Repeatable configuration
+
+```bash
+clean_bloc config clean_bloc.yaml    # write a config file
+# edit it
+clean_bloc create --config clean_bloc.yaml -y
+```
+
+```yaml
+project:
+  name: shop_app
+  display_name: "Shop App"
+  org: com.acme
+  version: 1.0.0+1
+
+platforms:
+  targets: [android, ios]
+  android:
+    package: com.acme.shop
+    min_sdk_version: 23
+  ios:
+    bundle_id: com.acme.shop
+    deployment_target: "13.0"
+
+architecture:
+  state_management: bloc      # bloc | cubit
+
+app:
+  base_url: https://api.acme.com
+  design_width: 375
+  design_height: 812
+
+locales: [en, ne]
+
+modules:
+  network: true
+  firebase: false
+  # ...
+
+dependencies:
+  overrides:
+    dio: ^5.7.0
+  extra:
+    freezed_annotation: ^2.4.4
+```
+
+`create` also drops a `clean_bloc.yaml` into the generated project, so
+`clean_bloc feature` later reads it and keeps new slices consistent. Without
+that file it infers the settings from `pubspec.yaml` and the existing folders.
+
+## Adding features
+
+Run inside a generated project:
+
+```bash
+clean_bloc feature product
+clean_bloc feature cart --state cubit --no-local
+```
+
+Each run writes the full slice:
+
+```
+lib/features/product
+├── data
+│   ├── datasources    product_remote_data_source(_impl).dart
+│   │                  product_local_data_source(_impl).dart
+│   ├── models         product_model.dart
+│   └── repositories   product_repository_impl.dart
+├── domain
+│   ├── entities       product_entity.dart
+│   ├── repositories   product_repository.dart
+│   └── usecases       get_products.dart
+└── presentation
+    ├── bloc           product_bloc / _event / _state.dart
+    ├── pages          product_page.dart
+    └── widgets        product_list_item.dart
+test/features/product/product_bloc_test.dart
+```
+
+…and wires it in: registrations into `injection_container.dart`, the provider
+into `app.dart`, the route into `app_router.dart`, and keys into every
+translation file. Wiring is anchored on `// clean_bloc:` marker comments and is
+idempotent — re-running skips existing files and never inserts a registration
+twice.
+
+Options: `--state bloc|cubit`, `--no-remote`, `--no-local`, `--no-page`,
+`--no-tests`, `--no-wire`, `--path <dir>`.
+
+## Generated architecture
 
 ```
 lib
+├── app.dart                 MaterialApp shell
+├── main.dart                bootstrap (l10n, .env, Firebase, Bloc.observer, DI)
+├── injection_container.dart get_it registrations, layered
 ├── core
-│   ├── error
-│   │   └── failures.dart
+│   ├── bloc                 AppBlocObserver
+│   ├── constants            app + endpoint constants
+│   ├── error                AppException hierarchy, Failure hierarchy
 │   ├── network
+│   │   ├── api_client.dart  Dio factory
+│   │   ├── api_endpoints.dart
 │   │   ├── network_info.dart
-│   │   └── network_info_impl.dart
-│   ├── router
-│   │   └── app_router.dart
-│   └── usecases
-│       └── usecase.dart
-├── features
-│   └── example
-│       ├── data
-│       │   ├── datasources
-│       │   │   ├── example_remote_datasource.dart
-│       │   │   └── example_remote_datasource_impl.dart
-│       │   ├── models
-│       │   │   └── example_model.dart
-│       │   └── repositories
-│       │       └── example_repository_impl.dart
-│       ├── domain
-│       │   ├── entities
-│       │   │   └── example_entity.dart
-│       │   ├── repositories
-│       │   │   └── example_repository.dart
-│       │   └── usecases
-│       │       └── get_examples.dart
-│       └── presentation
-│           ├── blocs
-│           │   ├── example_bloc.dart
-│           │   ├── example_event.dart
-│           │   └── example_state.dart
-│           ├── pages
-│           │   └── home_page.dart
-│           └── widgets
-│               └── example_widget.dart
-├── injection_container.dart
-└── main.dart
+│   │   └── interceptors     auth / error / retry / headers
+│   ├── notifications        push notifications
+│   ├── router               go_router, blocs scoped per route
+│   ├── storage              secure storage
+│   ├── theme                light / dark themes
+│   ├── usecases             UseCase contract
+│   └── utils                logger
+└── features
+    └── <feature>
+        ├── data             models, remote + local data sources, repository impl
+        ├── domain           entities, repository contract, use cases
+        └── presentation     bloc/cubit, pages, widgets
 ```
 
-To add a new feature, mirror the `example` folder under `features/<name>/`.
+### The rules the generated code follows
 
-## Dependencies
+**Dependencies point inward.** `presentation → domain ← data`. The domain layer
+imports nothing from the other two; the repository *contract* lives in `domain`
+and its implementation in `data`.
 
-### Core Dependencies
+**Errors change shape at the boundary.** Data sources throw typed
+`AppException`s (`ServerException`, `UnauthorizedException`,
+`RequestTimeoutException`, `CacheException`, …). Repositories catch them and
+return `Either<Failure, T>` via `Failure.from(error)`. Nothing above the
+repository ever catches an exception.
 
-- **flutter_bloc**: ^9.1.1 - State management
-- **equatable**: ^2.0.5 - Value equality
-- **get_it**: ^7.7.0 - Dependency injection (manual registration in `lib/injection_container.dart`)
-- **dartz**: ^0.10.1 - Functional programming utilities
+**Blocs are pure presentation logic.** They call use cases and emit states —
+no Dio, no SharedPreferences, no `BuildContext`. States are `sealed` classes, so
+the UI's `switch` is exhaustive and a new state is a compile error until it is
+handled.
 
-### Networking & Data
-
-- **dio**: ^5.7.0 - HTTP client
-- **retrofit**: ^4.4.1 - Type-safe HTTP client
-- **json_annotation**: ^4.8.1 - JSON serialization
-
-### UI & Utilities
-
-- **flutter_screenutil**: ^5.9.3 - Responsive UI
-- **cached_network_image**: ^3.2.0 - Image caching
-- **loading_animation_widget**: ^1.2.0 - Loading animations
-- **flutter_svg**: ^2.2.1 - SVG support
-
-### Localization & Navigation
-
-- **easy_localization**: ^3.0.7 - Internationalization
-- **go_router**: ^14.2.8 - Declarative routing
-
-### Firebase & Notifications
-
-- **firebase_core**: ^4.1.1 - Firebase core
-- **firebase_messaging**: ^16.0.2 - Push notifications
-- **flutter_local_notifications**: ^17.2.3 - Local notifications
-
-### Security & Storage
-
-- **flutter_secure_storage**: ^9.2.2 - Secure storage
-- **shared_preferences**: ^2.3.2 - Local storage
-
-### Development Dependencies
-
-- **build_runner**: ^2.4.13 - Code generation
-- **json_serializable**: ^6.8.0 - JSON code generation
-- **injectable_generator**: ^2.6.2 - Dependency injection code generation
-- **retrofit_generator**: ^9.1.2 - Retrofit code generation
-- **mockito**: ^5.4.4 - Mocking for tests
-
-## Getting Started
-
-### Prerequisites
-
-- Flutter SDK (^3.5.2)
-- Dart SDK (^3.5.2)
-
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/your-username/flutter-bloc-clean-architecture-template.git
-   cd flutter-bloc-clean-architecture-template
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   flutter pub get
-   ```
-
-3. **Generate code**
-
-   ```bash
-   flutter pub run build_runner build
-   ```
-
-4. **Run the app**
-   ```bash
-   flutter run
-   ```
-
-### Environment Setup
-
-1. Copy `.env.example` to `.env` and configure your environment variables:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   ```env
-   API_BASE_URL=https://jsonplaceholder.typicode.com
-   ```
-
-   `.env` is loaded on startup via `flutter_dotenv` (see `lib/main.dart`) and
-   `API_BASE_URL` is used to configure the shared `Dio` client's base URL in
-   `lib/injection_container.dart`. `.env` is gitignored — only `.env.example`
-   is committed.
-
-2. For Firebase integration:
-   - Add `google-services.json` to `android/app/`
-   - Add `GoogleService-Info.plist` to `ios/Runner/`
-
-## Usage
-
-### Adding a New Feature
-
-1. **Create Entity** (Domain Layer)
-
-   ```dart
-   class NewEntity extends Equatable {
-     final String id;
-     final String name;
-
-     const NewEntity({required this.id, required this.name});
-
-     @override
-     List<Object> get props => [id, name];
-   }
-   ```
-
-2. **Create Repository Interface** (Domain Layer)
-
-   ```dart
-   abstract class NewRepository {
-     Future<Either<Failure, List<NewEntity>>> getNews();
-   }
-   ```
-
-3. **Implement Use Case** (Domain Layer)
-
-   ```dart
-   class GetNews implements UseCase<List<NewEntity>, NoParams> {
-     final NewRepository repository;
-
-     GetNews(this.repository);
-
-     @override
-     Future<Either<Failure, List<NewEntity>>> call(NoParams params) {
-       return repository.getNews();
-     }
-   }
-   ```
-
-4. **Create BLoC** (Presentation Layer)
-
-   ```dart
-   class NewBloc extends Bloc<NewEvent, NewState> {
-     final GetNews getNews;
-
-     NewBloc({required this.getNews}) : super(NewInitial()) {
-       on<GetNewsEvent>((event, emit) async {
-         emit(NewLoading());
-         final result = await getNews(NoParams());
-         result.fold(
-           (failure) => emit(NewError()),
-           (news) => emit(NewLoaded(news)),
-         );
-       });
-     }
-   }
-   ```
-
-5. **Register Dependencies**
-   Add to `lib/injection_container/injection_container.dart`:
-   ```dart
-   sl.registerFactory(() => NewBloc(getNews: sl()));
-   sl.registerLazySingleton(() => GetNews(sl()));
-   // ... other registrations
-   ```
-
-### State Management
-
-The template uses BLoC pattern for state management. Each feature has its own BLoC with events and states:
-
-- **Events**: User actions or system events
-- **States**: UI states (loading, loaded, error)
-- **BLoC**: Business logic and state transitions
-
-### Networking
-
-Uses Dio for HTTP requests with Retrofit for type-safe API calls. The shared
-`Dio` instance is registered once in `lib/injection_container.dart` with its
-`baseUrl` read from `.env` and a `PrettyDioLogger` interceptor attached, so
-data sources issue relative requests:
+**Events are transformed, not queued blindly.**
 
 ```dart
-final response = await dio.get('/posts');
+on<LoadProducts>(_onLoad, transformer: droppable());     // ignore double taps
+on<RefreshProducts>(_onRefresh, transformer: restartable()); // supersede
 ```
 
-For a type-safe API layer, define a Retrofit interface:
-
-```dart
-@RestApi()
-abstract class ApiService {
-  @GET("/posts")
-  Future<List<PostModel>> getPosts();
-}
-```
-
-### Routing
-
-Uses `go_router` for declarative navigation. Routes are declared in
-`lib/core/router/app_router.dart` and consumed by `MaterialApp.router` in
-`lib/main.dart`:
+**Blocs live exactly as long as their screen.** With routing enabled, each route
+creates its bloc from the service locator and disposes it on pop:
 
 ```dart
 GoRoute(
-  path: '/',
-  name: 'home',
-  builder: (context, state) => const HomePage(),
+  path: ProductPage.routePath,
+  builder: (context, state) => BlocProvider(
+    create: (_) => sl<ProductBloc>()..add(const LoadProducts()),
+    child: const ProductPage(),
+  ),
 ),
 ```
 
-### Localization
+**`AppBlocObserver`** logs every event, transition and unhandled bloc error in
+one place, installed in `main` before `runApp`.
 
-Supports multiple languages using easy_localization, initialized in
-`lib/main.dart` with `en`/`ne` as the supported locales:
+### The interceptor stack
+
+`ApiClient.create` composes them in order — outbound top to bottom, inbound
+bottom to top:
+
+| Interceptor | Responsibility |
+| --- | --- |
+| `HeadersInterceptor` | `Accept-Language` from the app's locale, plus any static headers |
+| `AuthInterceptor` | attaches the bearer token; on a 401 refreshes once and replays the request. Extends `QueuedInterceptor`, so parallel 401s trigger a single refresh instead of a stampede |
+| `RetryInterceptor` | linear backoff for timeouts, dropped connections and 5xx — only on `GET`/`HEAD`/`OPTIONS`, so a `POST` is never sent twice |
+| `ErrorInterceptor` | maps `DioException` onto the app's `AppException` types, reading `message` / `errors` out of the response body |
+| `PrettyDioLogger` | debug builds only (behind an `assert`), last so it sees everything |
+
+The refresh call uses a second, interceptor-free `Dio` registered under
+`instanceName: refreshClient`, so a failing refresh cannot recurse.
+
+### Dependency injection
+
+`injection_container.dart` registers in dependency order — external packages,
+then core services, then one block per feature:
 
 ```dart
-Text('press_button_to_load'.tr()), // Uses translation keys
+Future<void> init() async {
+  await _registerExternal();  // SharedPreferences, SecureStorage, connectivity
+  _registerCore();            // NetworkInfo, Dio + its interceptors
+  _registerFeatures();        // bloc -> use cases -> repository -> data sources
+}
 ```
 
-Add translation keys to `assets/translations/en.json` and
-`assets/translations/ne.json`.
+Blocs are `registerFactory` (a fresh instance per screen); everything below
+them is a lazy singleton. `clean_bloc feature` appends a new block at the
+`// clean_bloc:registrations` marker.
 
-### Responsive UI
+## Offline behaviour
 
-Uses `flutter_screenutil` for responsive sizing. `main.dart` wraps the app in
-a `ScreenUtilInit`, after which `.w`, `.h`, `.sp`, etc. extensions are
-available on `num` throughout the app.
+With both `network` and `prefs` enabled, repositories cache every successful
+remote read and fall back to that cache when the request fails or the device is
+offline — so a failed refresh shows stale data plus a snackbar rather than an
+error screen.
 
-## Testing
+## How it works
 
-Run tests:
+| Path | Role |
+| --- | --- |
+| [bin/clean_bloc.dart](bin/clean_bloc.dart) | CLI: argument parsing, prompts, command dispatch |
+| [lib/src/config.dart](lib/src/config.dart) | `ProjectConfig` / `FeatureConfig`, validation, YAML I/O |
+| [lib/src/packages.dart](lib/src/packages.dart) | module → pub package registry |
+| [lib/src/engine.dart](lib/src/engine.dart) | mustache-style renderer (`{{var}}`, `{{#flag}}`) |
+| [lib/src/templates/](lib/src/templates/) | project and feature templates |
+| [lib/src/project_generator.dart](lib/src/project_generator.dart) | runs `flutter create`, writes the project |
+| [lib/src/feature_generator.dart](lib/src/feature_generator.dart) | writes a feature slice and wires it in |
+| [lib/src/native.dart](lib/src/native.dart) | rewrites Android/iOS/macOS/web/Linux identifiers |
+| [lib/src/detect.dart](lib/src/detect.dart) | recovers the configuration of an existing project |
+| [lib/src/writer.dart](lib/src/writer.dart) | file writing, `--dry-run`/`--force`, marker patching |
 
-```bash
-flutter test
-```
-
-Run integration tests:
-
-```bash
-flutter test integration_test/
-```
-
-## Scripts
-
-- `flutter pub run build_runner build` - Generate code
-- `flutter pub run build_runner watch` - Watch for changes and regenerate
-- `flutter pub run flutter_launcher_icons` - Generate app icons
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+Templates are embedded as raw Dart strings, so a compiled `clean_bloc` binary is
+fully self-contained.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- [Reso Coder](https://resocoder.com/) for Clean Architecture tutorials
-- [Flutter BLoC](https://bloclibrary.dev/) for state management
-- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) by Robert C. Martin
+See [LICENSE](LICENSE).

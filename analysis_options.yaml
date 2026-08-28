@@ -1,0 +1,19 @@
+# Analysis rules for the clean_bloc generator itself.
+# Kept dependency-free (no `include:`) so the package needs no pub fetch.
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_relative_lib_imports
+    - avoid_unused_constructor_parameters
+    - cancel_subscriptions
+    - directives_ordering
+    - prefer_final_locals
+    - prefer_single_quotes
+    - unawaited_futures
+    - unnecessary_parenthesis
+    - use_string_buffers
